@@ -1,5 +1,5 @@
 import { prisma } from "../config/database";
-import { TCreateCategoryData } from "../types/categoryTypes";
+import { TCreateCategoryData, TUpdateCategory } from "../types/categoryTypes";
 
 async function create(category: TCreateCategoryData){
   await prisma.category.create({
@@ -7,6 +7,14 @@ async function create(category: TCreateCategoryData){
   });
 }
 
+async function update(id: number, category: TUpdateCategory){
+  await prisma.category.update({
+    where: {id},
+    data: category
+  })
+}
+
 export const categoryRepository = {
-  create
+  create,
+  update
 }
