@@ -7,6 +7,13 @@ async function create(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
+async function update(req:Request, res: Response){
+  const {id, name} = req.body;
+  await categoryService.update(id,name);
+  res.sendStatus(200);
+}
+
 export const categoryController = {
-  create
+  create,
+  update,
 }
