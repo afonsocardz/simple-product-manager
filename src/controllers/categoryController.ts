@@ -8,12 +8,18 @@ async function create(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
-async function update(req:Request, res: Response){
+async function update(req: Request, res: Response) {
   const id = Number(req.body.id);
-  const categoryData: TUpdateCategory = req.body; 
+  const categoryData: TUpdateCategory = req.body;
   delete categoryData.id;
-  await categoryService.update(categoryData, id );
+  await categoryService.update(categoryData, id);
   res.sendStatus(200);
+}
+
+async function remove(req:Request, res:  Response){
+  const id = Number(req.body.id);
+  await categoryService.remove(id);
+  res.sendStatus(204);
 }
 
 export const categoryController = {
