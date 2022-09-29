@@ -16,6 +16,10 @@ async function remove(id:number){
   await categoryRepository.remove(id);
 }
 
+async function getAll(){
+  return await categoryRepository.getAll();
+}
+
 async function findOrFail(id:number) {
   const category = await categoryRepository.getById(id);
   if(!category){
@@ -32,6 +36,7 @@ async function isCategoryExists(categoryData: TCreateCategoryData) {
 }
 
 export const categoryService = {
+  getAll,
   create,
   update,
   remove,

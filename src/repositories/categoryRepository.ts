@@ -2,6 +2,10 @@ import { Category } from "@prisma/client";
 import { prisma } from "../config/database";
 import { TCreateCategoryData, TUpdateCategory } from "../types/categoryTypes";
 
+async function getAll (): Promise<Category[]>{
+  return await prisma.category.findMany();
+}
+
 async function getById(id: number): Promise<Category> {
   return await prisma.category.findFirst({ where: { id } });
 }
@@ -30,6 +34,7 @@ async function remove(id: number) {
 };
 
 export const categoryRepository = {
+  getAll,
   getById,
   getByName,
   create,
