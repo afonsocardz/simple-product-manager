@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { categoryService } from "../services/categoryService";
+import { TUpdateCategory } from "../types/categoryTypes";
 
 async function create(req: Request, res: Response) {
   const category = req.body;
@@ -8,8 +9,10 @@ async function create(req: Request, res: Response) {
 }
 
 async function update(req:Request, res: Response){
-  const {id, name} = req.body;
-  await categoryService.update(id,name);
+  const id = Number(req.body.id);
+  const categoryData: TUpdateCategory = req.body; 
+  delete categoryData.id;
+  await categoryService.update(categoryData, id );
   res.sendStatus(200);
 }
 
