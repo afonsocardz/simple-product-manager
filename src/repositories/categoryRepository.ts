@@ -1,6 +1,14 @@
-import { number } from "joi";
+import { Category } from "@prisma/client";
 import { prisma } from "../config/database";
 import { TCreateCategoryData, TUpdateCategory } from "../types/categoryTypes";
+
+async function getById(id: number): Promise<Category> {
+  return await prisma.category.findFirst({ where: { id } });
+}
+
+async function getByName({name}: TCreateCategoryData){
+  return await prisma.category.findFirst({where: {name}});
+}
 
 async function create(category: TCreateCategoryData) {
   await prisma.category.create({
@@ -15,13 +23,15 @@ async function update(id: number, category: TUpdateCategory) {
   })
 };
 
-async function remove(id: number){
+async function remove(id: number) {
   await prisma.category.delete({
-    where: {id}
+    where: { id }
   })
 };
 
 export const categoryRepository = {
+  getById,
+  getByName,
   create,
   update,
   remove
