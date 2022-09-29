@@ -23,6 +23,7 @@ async function remove(req:Request, res:  Response){
 }
 
 export const categoryController = {
+  remove,
   create,
   update,
 }
