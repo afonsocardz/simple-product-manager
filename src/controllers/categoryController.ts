@@ -22,7 +22,13 @@ async function remove(req:Request, res:  Response){
   res.sendStatus(204);
 }
 
+async function getAll(req:Request, res: Response){
+  const categories = await categoryService.getAll();
+  res.status(200).send(categories);
+}
+
 export const categoryController = {
+  getAll,
   remove,
   create,
   update,
