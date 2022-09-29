@@ -8,7 +8,7 @@ async function create(category: TCreateCategoryData) {
 async function isCategoryExists(categoryData: TCreateCategoryData) {
   const category = await categoryRepository.getByName(categoryData);
   if(category){
-    throw {type: 'conflict', message: 'Já existe esse produto'}
+    throw {type: 'conflict', message: 'Já existe essa categoria'}
   }
   await categoryRepository.create(categoryData);
 }
