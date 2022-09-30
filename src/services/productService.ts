@@ -2,6 +2,10 @@ import { productRepository } from "../repositories/productRepository";
 import { TCreateProductData, TUpdateProduct } from "../types/productTypes";
 import { categoryService } from "./categoryService";
 
+async function getProductsByCategoryId(id: number){
+  return await productRepository.getProductsByCategoryId(id);
+}
+
 async function create(product: TCreateProductData) {
   await isProductExists(product);
   await isCategoryExists(product.categoryId);
@@ -42,6 +46,7 @@ async function isProductExists(productData: TCreateProductData) {
 }
 
 export const productService = {
+  getProductsByCategoryId,
   getAll,
   create,
   update,

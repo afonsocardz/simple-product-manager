@@ -2,6 +2,12 @@ import { Request, Response } from "express";
 import { productService } from "../services/productService";
 import { TUpdateProduct } from "../types/productTypes";
 
+async function getProductsByCategoryId(req: Request, res: Response){
+  const id = Number(req.params.id);
+  const products = await productService.getProductsByCategoryId(id);
+  res.status(200).send(products);
+}
+
 async function create(req: Request, res: Response) {
   const product = req.body;
   await productService.create(product);
@@ -28,6 +34,7 @@ async function getAll(req:Request, res: Response){
 }
 
 export const productController = {
+  getProductsByCategoryId,
   getAll,
   remove,
   create,

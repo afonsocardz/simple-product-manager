@@ -7,5 +7,6 @@ router.post('/', productController.create);
 router.put('/', productController.update);
 router.delete('/', productController.remove);
 router.get('/', productController.getAll);
+router.get('/category/:id', productController.getProductsByCategoryId);
 
 export default router;

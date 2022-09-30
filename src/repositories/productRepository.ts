@@ -14,6 +14,17 @@ async function getByName({name}: TCreateProductData){
   return await prisma.product.findFirst({where: {name}});
 }
 
+async function getProductsByCategoryId(id:number){
+  return await prisma.product.findMany({
+    where: {
+      categoryId: id,
+    },
+    include: {
+      categories: true
+    }
+  })
+}
+
 async function create(product: TCreateProductData) {
   await prisma.product.create({
     data: product
@@ -34,6 +45,7 @@ async function remove(id: number){
 };
 
 export const productRepository = {
+  getProductsByCategoryId,
   getAll,
   getByName,
   getById,
