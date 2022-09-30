@@ -36,6 +36,7 @@ async function isCategoryExists(categoryData: TCreateCategoryData) {
 }
 
 export const categoryService = {
+  findOrFail,
   getAll,
   create,
   update,
