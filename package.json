@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npm i && npx prisma migrate deploy",
     "postinstall": "tsc",
     "start": "node ./dist/src/server.js",
     "dev": "nodemon ./src/server.ts"
