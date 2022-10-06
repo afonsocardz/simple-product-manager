@@ -21,6 +21,7 @@ model Product {
   name String @unique
   price Float
   imageUrl String
+  description String
   categories Category @relation(fields: [categoryId], references: [id])
   categoryId Int 
   @@map("products")
